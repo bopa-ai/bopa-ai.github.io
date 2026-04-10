@@ -32,7 +32,23 @@ import {
 } from '@/components/ui/accordion'
 
 
-const programmes = [
+interface Programme {
+  title: string
+  description: string
+  access: string
+}
+
+interface FAQ {
+  q: string
+  a: string
+}
+
+interface ScheduleItem {
+  time: string
+  event: string
+}
+
+const programmes: Programme[] = [
   {
     title: 'SACT Verification Passport',
     description:
@@ -53,7 +69,7 @@ const programmes = [
   },
 ]
 
-const faqs = [
+const faqs: FAQ[] = [
   {
     q: 'Who can join BOPA?',
     a: 'BOPA welcomes pharmacists, pharmacy technicians, and other healthcare professionals involved in the care of cancer patients. Students and trainees are also encouraged to join.',
@@ -76,7 +92,7 @@ const faqs = [
   },
 ]
 
-const conferenceSchedule = [
+const conferenceSchedule: ScheduleItem[] = [
   { time: 'Fri 2 Oct', event: 'Registration & Welcome Reception' },
   { time: 'Fri 2 Oct', event: 'Opening Keynote & Plenary Sessions' },
   { time: 'Sat 3 Oct', event: 'Parallel Sessions & Workshops' },
