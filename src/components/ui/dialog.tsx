@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import type { ComponentProps } from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
 import { cn } from "@/lib/utils"
@@ -9,32 +9,32 @@ import { XIcon } from "lucide-react"
 
 function Dialog({
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Root>) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
 function DialogTrigger({
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Trigger>) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
 function DialogPortal({
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Portal>) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
 function DialogClose({
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Close>) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
 function DialogOverlay({
   className,
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Backdrop>) {
   return (
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
@@ -51,7 +51,7 @@ function DialogContent({
   children,
   showCloseButton = true,
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Popup> & { showCloseButton?: boolean }) {
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -81,7 +81,7 @@ function DialogContent({
 function DialogHeader({
   className,
   ...props
-}) {
+}: ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-header"
@@ -95,7 +95,7 @@ function DialogFooter({
   showCloseButton = false,
   children,
   ...props
-}) {
+}: ComponentProps<"div"> & { showCloseButton?: boolean }) {
   return (
     <div
       data-slot="dialog-footer"
@@ -117,7 +117,7 @@ function DialogFooter({
 function DialogTitle({
   className,
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
@@ -129,7 +129,7 @@ function DialogTitle({
 function DialogDescription({
   className,
   ...props
-}) {
+}: ComponentProps<typeof DialogPrimitive.Description>) {
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"

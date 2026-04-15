@@ -7,34 +7,34 @@ import {
   Center,
   Environment,
 } from '@react-three/drei'
-import { ACESFilmicToneMapping } from 'three'
+import { ACESFilmicToneMapping, Group } from 'three'
 
 const fontPath = import.meta.env.BASE_URL + 'fonts/montserrat-extrabold.json'
 
 const sharedTextProps = {
   font: fontPath,
   bevelEnabled: true,
-  bevelSegments: 24,
-  curveSegments: 64,
+  bevelSegments: 8,
+  curveSegments: 16,
 }
 
-function BalloonMetalMaterial() {
+interface HeroSceneProps {
+  dark?: boolean
+}
+
+function BalloonMetalMaterial({ dark }: { dark: boolean }) {
   return (
-    <meshPhysicalMaterial
-      color="#111111"
+    <meshStandardMaterial
+      color={dark ? '#eeeeee' : '#111111'}
       metalness={0.95}
       roughness={0.14}
-      clearcoat={1}
-      clearcoatRoughness={0.06}
       envMapIntensity={2.4}
-      reflectivity={1}
-      ior={2.1}
     />
   )
 }
 
-function BopaText() {
-  const groupRef = useRef(null)
+function BopaText({ dark }: { dark: boolean }) {
+  const groupRef = useRef<Group>(null)
 
   useFrame((state) => {
     if (!groupRef.current) return
@@ -61,7 +61,7 @@ function BopaText() {
                 letterSpacing={0.05}
               >
                 bopa
-                <BalloonMetalMaterial />
+                <BalloonMetalMaterial dark={dark} />
               </Text3D>
             </Center>
 
@@ -75,7 +75,7 @@ function BopaText() {
                 letterSpacing={0.04}
               >
                 AI hackathon
-                <BalloonMetalMaterial />
+                <BalloonMetalMaterial dark={dark} />
               </Text3D>
             </Center>
 
@@ -89,7 +89,7 @@ function BopaText() {
                 letterSpacing={0.1}
               >
                 2026
-                <BalloonMetalMaterial />
+                <BalloonMetalMaterial dark={dark} />
               </Text3D>
             </Center>
           </group>
@@ -102,27 +102,17 @@ function BopaText() {
 function SceneLights() {
   return (
     <>
-      <ambientLight intensity={0.22} />
-
-      <directionalLight position={[6, 8, 5]} intensity={1.45} />
-
-      <spotLight
-        position={[-6, 7, 8]}
-        angle={0.42}
-        penumbra={1}
-        intensity={1.9}
-      />
-
-      <pointLight position={[0, 3, -4]} intensity={0.7} color="#9ca3af" />
-      <pointLight position={[3, 1, 4]} intensity={0.5} color="#ffffff" />
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[6, 8, 5]} intensity={1.6} />
+      <directionalLight position={[-4, 3, 3]} intensity={0.6} color="#9ca3af" />
     </>
   )
 }
 
-export default function HeroScene() {
+export default function HeroScene({ dark = false }: HeroSceneProps) {
   return (
     <Canvas
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0.1, 12], fov: 36 }}
       gl={{
         antialias: true,
@@ -132,16 +122,15 @@ export default function HeroScene() {
         toneMappingExposure: 1.15,
       }}
     >
-      <color attach="background" args={['#ffffff']} />
+      <color attach="background" args={[dark ? '#0A0A0A' : '#ffffff']} />
 
       <Suspense fallback={null}>
         <Environment preset="studio" />
         <SceneLights />
 
         <group position={[0, 0.25, 0]}>
-          <BopaText />
+          <BopaText dark={dark} />
         </group>
-
       </Suspense>
 
       <OrbitControls
