@@ -1,10 +1,13 @@
 import { Separator } from '@/components/ui/separator'
-import ConferenceSection from '@/components/ConferenceSection'
 import FaqSection from '@/components/FaqSection'
 import Footer from '@/components/Footer'
 import HeroSection from '@/components/HeroSection'
+import IntroductionSection from '@/components/IntroductionSection'
 import Navbar from '@/components/Navbar'
-import ProgrammesSection from '@/components/ProgrammesSection'
+import PanelsSection from '@/components/PanelsSection'
+import PrizesSection from '@/components/PrizesSection'
+import ScheduleSection from '@/components/ScheduleSection'
+import SponsorSection from '@/components/SponsorSection'
 import { useTheme } from '@/hooks/use-theme'
 
 export default function App() {
@@ -15,13 +18,22 @@ export default function App() {
       <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
 
       <Separator />
-      <HeroSection isDark={isDark} />
+      <HeroSection />
 
       <Separator />
-      <ProgrammesSection />
+      <IntroductionSection />
 
       <Separator />
-      <ConferenceSection />
+      <ScheduleSection />
+
+      <Separator />
+      <PrizesSection />
+
+      <Separator />
+      <PanelsSection />
+
+      <Separator />
+      <SponsorSection />
 
       <Separator />
       <FaqSection />

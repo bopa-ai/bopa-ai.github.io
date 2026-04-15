@@ -1,95 +1,39 @@
-import { useState } from 'react'
-
-import HeroScene from '@/components/HeroScene'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import { Separator } from '@/components/ui/separator'
 
-interface HeroSectionProps {
-  isDark: boolean
-}
-
-export default function HeroSection({ isDark }: HeroSectionProps) {
-  const [joined, setJoined] = useState(false)
-
+export default function HeroSection() {
   return (
     <section className="relative flex flex-col items-center justify-center px-6 pt-20 pb-16">
-      <div className="w-full max-w-md h-64 mb-8">
-        <HeroScene dark={isDark} />
+      <div className="mb-8 flex w-full justify-center">
+        <img
+          src="/images/bopalogo.svg"
+          alt="BOPA logo"
+          className="h-auto w-full max-w-[260px]"
+        />
       </div>
-      <Badge className="mb-4">Registered Charity No. 1065026</Badge>
-      <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-center">
-        British Oncology Pharmacy Association
+      <h1 className="text-3xl md:text-5xl font-bold tracking-tighter text-center">
+        AI Hackathon 2026
       </h1>
       <p className="mt-4 max-w-xl text-center text-muted-foreground">
-        Promoting excellence in the pharmaceutical care of patients with cancer through
-        education, communication, research and innovation.
+        Build and showcase the future of oncology pharmacy with us. Join the BOPA AI Hackathon 2026
+        to transform cancer care through the power of artificial intelligence.
       </p>
       <div className="mt-8 flex gap-3">
-        <Dialog>
-          <DialogTrigger render={<Button size="lg" />}>Join BOPA</DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Become a BOPA Member</DialogTitle>
-              <DialogDescription>
-                Join a community of oncology pharmacy professionals dedicated to
-                improving cancer care.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="py-4 space-y-3 text-sm">
-              <p>
-                <strong>Full Membership - £65/year</strong>
-              </p>
-              <p>
-                Access to eLearning courses, SACT Verification Passport, forums,
-                resource library, publications, and conference discounts.
-              </p>
-              <Separator />
-              <p>
-                <strong>Free Associate Membership</strong>
-              </p>
-              <p>
-                Limited access for those wanting to explore BOPA before committing to
-                full membership.
-              </p>
-              <Separator />
-              <p className="text-muted-foreground">
-                Corporate membership is also available for organisations.
-              </p>
-            </div>
-            <DialogFooter>
-              <DialogClose render={<Button variant="outline" />}>Cancel</DialogClose>
-              <DialogClose render={<Button onClick={() => setJoined(true)} />}>
-                {joined ? 'Welcome!' : 'Join Now'}
-              </DialogClose>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+        <Button
+          size="lg"
+          className="h-12 px-6 text-base"
+          onClick={() => window.open('https://www.bopa.org.uk/', '_blank', 'noopener,noreferrer')}
+        >
+          Visit BOPA
+        </Button>
         <Button
           variant="outline"
           size="lg"
-          onClick={() =>
-            document.getElementById('programmes')?.scrollIntoView({ behavior: 'smooth' })
-          }
+          className="h-12 px-6 text-base"
+          onClick={() => window.open('https://www.zoom.com/', '_blank', 'noopener,noreferrer')}
         >
-          Explore Programmes
+          Register Now
         </Button>
       </div>
-      {joined && (
-        <Badge variant="secondary" className="mt-4">
-          Welcome to BOPA!
-        </Badge>
-      )}
     </section>
   )
 }
