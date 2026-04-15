@@ -10,6 +10,14 @@ import ScheduleSection from '@/components/ScheduleSection'
 import SponsorSection from '@/components/SponsorSection'
 import { useTheme } from '@/hooks/use-theme'
 
+function SectionSeparator() {
+  return (
+    <div className="mx-auto max-w-3xl px-6">
+      <Separator />
+    </div>
+  )
+}
+
 export default function App() {
   const { isDark, toggleTheme } = useTheme()
 
@@ -17,27 +25,27 @@ export default function App() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
 
-      <Separator />
+      <SectionSeparator />
       <HeroSection />
 
-      <Separator />
+      <SectionSeparator />
       <IntroductionSection />
 
-      <Separator />
+      <SectionSeparator />
       <ScheduleSection />
 
-      <Separator />
+      <SectionSeparator />
       <PrizesSection />
 
-      <Separator />
+      <SectionSeparator />
       <PanelsSection />
 
-      <Separator />
+      <SectionSeparator />
       <SponsorSection />
 
-      <Separator />
+      <SectionSeparator />
       <FaqSection />
-      <Separator />
+      <SectionSeparator />
       <Footer />
     </div>
   )
